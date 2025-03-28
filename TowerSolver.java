@@ -11,7 +11,7 @@ public class TowerSolver {
     {
         this.model = model;
         model.print();
-        model.solve(model.height(),0,2,1);
+        solve(model.height(),0,2);
         // Call the missing solve method (not this one)
     }
 
@@ -20,19 +20,19 @@ public class TowerSolver {
     //
     // [ solve method here]
     //
-    public void solve(int n, int source, int destination, int temporary){
+    public void solve(int n, int source, int destination){
        if(n==1){
         //base case
         model.move(source, destination);
         model.print();
         return;
        }
-       solve(n-1, source, destination, temporary);
+       solve(n-1, source, destination-1);
 
        //intermediate
        model.move(source, destination);
        model.print();
-       solve(n-1, source, destination, temporary);
+       solve(n-1, source+1, destination);
     }
 
 
